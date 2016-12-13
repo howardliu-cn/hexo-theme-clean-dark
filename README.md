@@ -4,6 +4,7 @@
 # 效果
 如果想查看效果，可以在[我的博客](http://www.howardliu.cn/)中查看效果。
 如果想查看收集效果，可以扫下面的二维码。
+
 ![http://www.howardliu.cn/](http://www.howardliu.cn/images/qr-code/howardliu-qrcode.png)
 
 # 使用
