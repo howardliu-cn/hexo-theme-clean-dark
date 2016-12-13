@@ -1,0 +1,10 @@
+<div class="sidebar">
+    <div class="well">
+        <h2><%= __('blogroll') %></h2>
+        <ul>
+            <% for (var i in theme.links) { %>
+            <li><a class="links-list-link" href="<%= theme.links[i].url %>" title="<%= theme.links[i].title %>" target='_blank'><%= theme.links[i].title %></a></li>
+            <% } %>
+        </ul>
+    </div>
+</div>

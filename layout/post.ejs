@@ -1,0 +1,35 @@
+<div class="article">
+    <div class="well">
+        <h1><a href="<%- url_for(page.path) %>"><%- page.title || __('notitle') %></a></h1>
+        <div class="post-meta">
+            <div class="post-time">
+                <i class="fa fa-calendar"></i><time> <%- page.date.format(config.date_format) %></time>
+            </div>
+        </div>
+        <div class="post-content article-entry">
+            <div id="toc" class="toc"></div>
+            <%- page.content %>
+        </div>
+        <% if(page.tags){ %>
+        <div class="tags">
+            <% page.tags.each(function(tag){%>
+            <a href="<%- url_for(tag.path)%>"><%- tag.name%></a>
+            <%})%>
+        </div>
+        <% } %>
+        <% if(page.next || page.prev){ %>
+        <div class="post-nav">
+            <% if(page.prev){ %>
+            <a class="pre" href="<%- url_for(page.prev_link || page.prev.path) %>">
+                <i class="icon-previous"><%- page.prev.title %></i>
+            </a>
+            <% } %>
+            <% if(page.next){ %>
+            <a class="next" href="<%- url_for(page.next_link || page.next.path) %>">
+                <i class="icon-next"><%if(page.next.title){%><%- page.next.title %><%} else {%><%- __('notitle')%><%}%></i>
+            </a>
+            <% } %>
+        </div>
+        <% } %>
+    </div>
+</div>

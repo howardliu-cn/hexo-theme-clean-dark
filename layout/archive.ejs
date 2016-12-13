@@ -1,0 +1,95 @@
+<div class="well">
+    <div class="page-content wc-container">
+        <h1><%= __('archive') %></h1>
+
+        <div class="post">
+            <%
+            if(page.archive) {
+            if(page.year) {
+            if (page.month) {
+            %>
+            <div class="post-meta">
+                <div class="post-time">
+                    <time><%- page.year %>-<%- page.month %></time>
+                </div>
+            </div>
+            <ul class="posts">
+                <%
+                page.posts.each(function (post, index) {
+                %>
+                <li><%- post.date.format("MM-DD") %> <a
+                            href="<%- url_for(post.path) %>"><%- post.title || __('notitle') %></a></li>
+                <%
+                });
+                %>
+            </ul>
+            <%
+            } else {
+                var thisYearResult = _.groupBy(site.posts.toArray(), function (p) {
+                    return -p.date.format('YYYY');
+                });
+                    for (var year in thisYearResult) {
+            if (-year == page.year) {
+                var sortArray = _.sortBy(thisYearResult[year], function (p) {
+                    return -p.date.format("YYYYMMDD");
+                });
+                var preMonth = "";
+            for(var index = 0; index < sortArray.length; index++) {
+                var post = sortArray[index];
+                var thisMonth = post.date.format("MM");
+            if (thisMonth != preMonth) {
+                preMonth = thisMonth;
+            if(index != 0) {
+            %>
+            </ul>
+            <%
+            }
+            %>
+            <div class="post-meta">
+                <div class="post-time">
+                    <time><%- page.year %>-<%- thisMonth %></time>
+                </div>
+            </div>
+            <ul class="posts">
+                <%
+                }
+                %>
+                <li><%- post.date.format("MM-DD") %> <a
+                            href="<%- url_for(post.path) %>"><%- post.title || __('notitle') %></a></li>
+                <%
+                }
+                %>
+            </ul>
+            <%
+            }
+            }
+            }
+            } else {
+                var result = _.sortBy(site.posts.toArray(), function (p) {
+                    return -p.date.format('YYYYMMDD');
+                });
+                var preYear = "";
+                    for (var index in result) {
+                var post = result[index];
+                var thisYear = post.date.format("YYYY");
+            if (preYear != thisYear) {
+                preYear = thisYear;
+            if(index != 0) {
+            %>
+            </ul>
+            <% } %>
+            <div class="post-meta">
+                <div class="post-time">
+                    <time><%- thisYear %></time>
+                </div>
+            </div>
+            <ul class="posts">
+                <% }%>
+                <li><%- post.date.format("MM-DD") %> <a
+                            href="<%- url_for(post.path) %>"><%- post.title || __('notitle') %></a></li>
+                <%} %>
+            </ul>
+            <% }} %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="post-footer">
+    <% if(page.prev){ %>
+    <a class="pre" href="<%- url_for(page.prev_link || page.prev.path) %>"><%= __('previous') %></a>
+    <% } %>
+    <% if(page.next){ %>
+    <a class="next" href="<%- url_for(page.next_link || page.next.path) %>"><%= __('next') %></a>
+    <% } %>
+</div>
+

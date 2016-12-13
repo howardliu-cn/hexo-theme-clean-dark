@@ -1,0 +1,44 @@
+fancybox: true ## If you want to use fancybox please set the value to true
+duoshuo: ## Your duoshuo_shortname, e.g. howardliu
+disqus: ## Your disqus_shortname, e.g. howardliu
+#google_search: ## Use Google search, true/false
+#baidu_search: true ## Use Baidu search, true/false
+#swiftype: ## Your swiftype_key, e.g. m7b11ZrsT8Me7gzApciT
+#tinysou: ## Your tinysou_key, e.g. 4ac092ad8d749fdc6293
+#google_analytics: ## Your Google Analytics tracking id, e.g. UA-XXXXXXXX-X
+#baidu_analytics: ## Your Baidu Analytics tracking id, e.g. XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+favicon: /favicon.png ## Your path of favicon, e.g. /favicon.png
+keywords: ## the default keywords which is the content of meta keywords in the head of html file
+email: howardliu1988@163.com ## your email which contains in head of html file
+
+menu:
+  - page: home
+    directory: .
+    icon: icon-home
+  - page: archive
+    directory: archives/
+    icon: icon-archive
+  - page: rss
+    directory: atom.xml
+    icon: icon-rss
+  - page: about
+    directory: about/
+    icon: icon-about
+
+widgets: ## Seven widgets in sidebar provided: categories, tagcloud, tags, archives, recent_posts, recent_comments and links.
+#  - categories
+  - tagcloud
+#  - tags
+  - archives
+  - recent_posts
+#  - recent_comments
+  - links
+
+social:
+  github:
+  stackoverflow:
+
+links:
+  - title: 沉潜飞动
+    url: http://www.howardliu.com/

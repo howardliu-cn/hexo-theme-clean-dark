@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='<%= config.language %>'>
+<head>
+<%- partial('_partial/header') %>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <% var title = config.title || config.subtitle || ''; %>
+            <a class="navbar-brand" href="<%- url_for('.') %>"><%= title %></a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <% theme.menu.forEach(function (m) {
+                    var href = m.directory;
+                    var page = m.page;
+                    var icon = m.icon;
+                if((href == '.' && (is_home() || is_post())) || is_current(href)) {
+                %>
+                <li><a href="<%- url_for(href) %>" class="current"><i class="<%= icon %>"> <%= __(page) %></i></a></li>
+                <% } else { %>
+                <li><a href="<%- url_for(href) %>"><i class="<%= icon %>"> <%= __(page) %></i></a></li>
+                <% }}); %>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="wrapper">
+    <div class="content">
+        <div class="container container-center">
+            <div class="row">
+                <div class="col-md-8">
+                    <%- body %>
+                </div>
+                <div class="col-md-4 hidden-xs">
+                    <%- partial('_partial/sidebar')%>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="side-button-wrap">
+        <a id="to-top" class="side-button icon-up-arrow" href="#top"></a>
+        <a id="to-home" class="side-button icon-home" href="<%- url_for('.') %>"></a>
+        <a id="to-comment-button" class="side-button icon-msg" href="#comment"></a>
+        <a id="to-bottom-button" class="side-button icon-down-arrow" href="#bottom"></a>
+    </div>
+    <a id="bottom" name="bottom"></a>
+    <%- partial('_partial/footer') %>
+</div>
+<%- partial('_partial/after_footer') %>
+</body>
+</html>

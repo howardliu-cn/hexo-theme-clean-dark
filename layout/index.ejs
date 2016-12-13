@@ -1,0 +1,32 @@
+<div class="well">
+<% page.posts.each(function(post){ %>
+<div class="post">
+    <h2 class="post-title">
+        <a href="<%- url_for(post.path) %>"><%- post.title || __('notitle') %></a>
+    </h2>
+    <div class="post-meta">
+        <div class="post-time">
+            <i class="fa fa-calendar"></i><time> <%- post.date.format(config.date_format) %></time>
+        </div>
+    </div>
+    <div class="post-descr">
+        <% if(post.excerpt){ %>
+        <%- post.excerpt %>
+        <% } else if(post.description) { %>
+        <%- post.description %>
+        <% } else if(post.content) { %>
+        <% var br = post.content.indexOf('\n'); %>
+        <% if (br < 0) { %>
+        <%- post.content %>
+        <% } else { %>
+        <%- post.content.substring(0, br) %>
+        <% } %>
+        <% } %>
+    </div>
+    <p class="readmore">
+        <a href="<%- url_for(post.path) %>"><%- __('Readmore') %></a>
+    </p>
+</div>
+<% }) %>
+<%- partial('_partial/pagination') %>
+</div>

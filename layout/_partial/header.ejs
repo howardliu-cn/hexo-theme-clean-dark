@@ -1,0 +1,28 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- partial('_partial/seo') %>
+<% if (theme.favicon){ %>
+<link rel="shortcut icon" href="<%- theme.favicon %>" type="image/x-icon"/>
+<link rel="icon" href="<%- theme.favicon %>">
+<% } %>
+<%- css('//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css') %>
+<%- css('css/theme.css') %>
+<%- css('css/syntax.css') %>
+<%- css('css/font-awesome/css/font-awesome.min.css') %>
+<%- css('//cdn.bootcss.com/highlight.js/9.1.0/styles/arta.min.css') %>
+<!--baidu analytics-->
+<% if (theme.baidu_analytics){ %>
+<script>
+    // baidu analytics
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?<%- theme.baidu_analytics %>";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<% } %>

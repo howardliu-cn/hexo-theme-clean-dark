@@ -1,0 +1,90 @@
+<%
+var title = '';
+if (is_post()) {
+    title += page.title + '|';
+} else if (is_archive()) {
+    if (is_month()) {
+        title += page.year + '/' + page.month + '|';
+    } else if (is_year()) {
+        title += page.year + '|';
+    }
+} else if(is_tag()) {
+    title += page.tag + '|';
+}
+%>
+<title><% if (title){ %><%= title %>|<% } %><%= config.title %>|<%= config.subtitle %></title>
+<%- open_graph({
+    twitter_id: theme.twitter,
+    google_plus: theme.google_plus,
+    fb_admins: theme.fb_admins,
+    fb_app_id: theme.fb_app_id
+}) %>
+<%
+var keywords = '';
+if (is_post()) {
+    keywords = page.keywords;
+} else {
+    var getKeywords = function (objArray) {
+        var _keywordsStr = '';
+        objArray.forEach(function (obj) {
+            var _keywords = obj.keywords;
+            if (_keywords) {
+                if (_keywordsStr) {
+                    _keywordsStr += ',';
+                }
+                _keywordsStr += _keywords;
+            }
+        });
+        return _keywordsStr;
+    };
+    var uniqueFunction = function (keywordArraySrc) {
+        var keywordArrayDesc = [];
+        var _keywordJson = {};
+        var _arraySize = keywordArraySrc.length;
+        for (var i = 0; i < _arraySize; i++) {
+            if (!_keywordJson[keywordArraySrc[i]]) {
+                keywordArrayDesc.push(keywordArraySrc[i]);
+                _keywordJson[keywordArraySrc[i]] = 1;
+            }
+        }
+        return keywordArrayDesc;
+    };
+    var array2Str = function (keywordArray) {
+        var _str = '';
+        var _keywordSize = keywordArray.length;
+        for (var m = 0; m < _keywordSize; m++) {
+            if(_str) {
+                _str += ',';
+            }
+            _str += keywordArray[m];
+        }
+        return _str;
+    };
+    keywords = array2Str(uniqueFunction(getKeywords(site.posts).split(",")));
+}
+if(keywords) {
+%>
+<meta name="keywords" content="<%= keywords %>">
+<% } %>
+<%
+var stripHTML = function (str) {
+    var rStrip = /<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi;
+    if (typeof str !== 'string') {
+        throw new TypeError('str must be a string!');
+    }
+    return str.replace(rStrip, '').trim();
+};
+var description = page.description || page.excerpt || page.content || config.description;
+if (description) {
+    description = stripHTML(description).substring(0, 150)
+            .replace(/^\s+|\s+$/g, '') // Remove prefixing/trailing spaces
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&apos;');
+%>
+<meta name="description" content="<%= description %>">
+<% } %>
+<meta name="author" content="<%= (page.author || theme.author || config.author) + ',' + (page.email || theme.email || config.email) %>">
+<% if (theme.rss){ %><link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml"><% } %>
