@@ -36,6 +36,7 @@ widgets: ## Seven widgets in sidebar provided: categories, tagcloud, tags, archi
 social:
   github:
   stackoverflow:
+  hosted: ## The pages-site provider e.g. coding-pages
 
 links:
   - title: 沉潜飞动

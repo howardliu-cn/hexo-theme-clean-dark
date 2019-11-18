@@ -39,11 +39,19 @@
                 }
                 %>
                 <li>
-                    <a title="github" href="https://github.com/howardliu-cn/hexo-theme-clean-dark"
+                    <a title="hexo-theme-clean-dark" href="https://github.com/howardliu-cn/hexo-theme-clean-dark"
                        target="_blank">
                         <i class="fa fa-film fa-2x"></i>
                     </a>
                 </li>
+                <%if(theme.social['hosted'] && theme.social['hosted'] === 'coding-pages') {%>
+                <li>
+                    <a title="Hosted by Coding Pages" href="https://pages.coding.me"
+                       target="_blank">
+                        <img src="https://coding.net/static/f7272a0b7cd340571725c6734c6bdd6f.png"/>
+                    </a>
+                </li>
+                <%}%>
             </ul>
         </div>
     </div>
