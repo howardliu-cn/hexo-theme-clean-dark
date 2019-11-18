@@ -1,31 +1,33 @@
 <div class="page-content wc-container">
     <div class="post">
         <h2 class="post_title"><%= page.tag%></h2>
-        <ul>
-            <% site.posts.each(function(post){ %>
-            <% post.tags.each(function(tag){ %>
-            <% if(tag.name == page.tag){ %>
-            <li class="archive_list">
-                <time><%- post.date.format(config.date_format) %></time>
-                <a class="archive_list_article_link" href="<%- url_for(post.path) %>"><%- post.title || __('notitle') %></a>
-                <p>
-                    <% if(post.excerpt){ %>
-                    <%- post.excerpt %>
-                    <% } else if(post.description) { %>
-                    <%- post.description %>
-                    <% } else if(post.content) { %>
-                    <% var br = post.content.indexOf('\n'); %>
-                    <% if (br < 0) { %>
-                    <%- post.content %>
-                    <% } else { %>
-                    <%- post.content.substring(0, br) %>
-                    <% } %>
-                    <% } %>
-                </p>
-            </li>
-            <% } %>
-            <% }) %>
-            <% }) %>
-        </ul>
+        <div class="well">
+            <ul>
+                <% site.posts.each(function(post){ %>
+                    <% post.tags.each(function(tag){ %>
+                        <% if(tag.name == page.tag){ %>
+                            <li class="archive_list">
+                                <time><%- post.date.format(config.date_format) %></time>
+                                <a class="archive_list_article_link" href="<%- url_for(post.path) %>"><%- post.title || __('notitle') %></a>
+                                <p>
+                                    <% if(post.excerpt){ %>
+                                        <%- post.excerpt %>
+                                    <% } else if(post.description) { %>
+                                        <%- post.description %>
+                                    <% } else if(post.content) { %>
+                                        <% var br = post.content.indexOf('\n'); %>
+                                        <% if (br < 0) { %>
+                                            <%- post.content %>
+                                        <% } else { %>
+                                            <%- post.content.substring(0, br) %>
+                                        <% } %>
+                                    <% } %>
+                                </p>
+                            </li>
+                        <% } %>
+                    <% }) %>
+                <% }) %>
+            </ul>
+        </div>
     </div>
 </div>
