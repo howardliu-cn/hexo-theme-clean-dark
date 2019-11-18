@@ -151,6 +151,12 @@ body {
           border-bottom: 0;
         }
       }
+      #archive-list-button {
+        float: right;
+        padding: 0 0 0 12px;
+        color: #dcdcdc;
+        cursor: pointer;
+      }
     }
   }
 }
