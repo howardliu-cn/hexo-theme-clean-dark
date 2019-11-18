@@ -5,6 +5,13 @@
             <div class="post-time">
                 <i class="fa fa-calendar"></i><time> <%- page.date.format(config.date_format) %></time>
             </div>
+            <div class="post-visitors-count">
+                <i class="fa fa-ge"></i>
+                <span id="<%- url_for(page.path) %>" class="leancloud_visitors" data-flag-title="<%- page.title || __('notitle') %>">
+                    <span class="post-meta-item-text">阅读量 </span>
+                    <i class="leancloud-visitors-count">0</i>
+                </span>
+            </div>
         </div>
         <div class="post-content article-entry">
             <div id="toc" class="toc"></div>
@@ -33,3 +40,14 @@
         <% } %>
     </div>
 </div>
+<% if (theme.comment.valine && theme.comment.valine.appid && theme.comment.valine.appkey){ %>
+    <div class="well">
+        <section id="comments">
+            <%- partial('_partial/comments', {
+                key: page.slug,
+                title: page.title,
+                url: url_for(page.path)
+            }) %>
+        </section>
+    </div>
+<% } %>

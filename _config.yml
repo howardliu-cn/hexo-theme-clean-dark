@@ -8,7 +8,7 @@ fancybox: true ## If you want to use fancybox please set the value to true
 
 favicon: /favicon.png ## Your path of favicon, e.g. /favicon.png
 keywords: ## the default keywords which is the content of meta keywords in the head of html file
-email: howardliu1988@163.com ## your email which contains in head of html file
+email: ## your email which contains in head of html file, e.g. howardliu1988@163.com
 
 menu:
   - page: home
@@ -23,6 +23,16 @@ menu:
   - page: about
     directory: about/
     icon: icon-about
+
+comment:
+  valine:
+    appid: #Application <APP_ID> from LeanCloud.
+    appkey: #Application <APP_KEY> from LeanCloud.
+    verify: #Validation code.
+    visitor: #Article reading statistics.
+    notify: #Mail notifier, read more from https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE
+    avatar: #avatar in comment list, allow value: ''/mm/identicon/monsterid/wavatar/retro/hide, read more from https://valine.js.org/avatar.html
+    placeholder: #Comment box placeholders.
 
 widgets: ## Seven widgets in sidebar provided: categories, tagcloud, tags, archives, recent_posts, recent_comments and links.
 #  - categories
