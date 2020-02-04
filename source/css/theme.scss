@@ -581,6 +581,17 @@ nav.shrink .navbar-toggle {
 }
 
 .post .post-descr, .article-entry {
+  #toc {
+    float: right;
+    background-color: #eee;
+    font-size: 0.8em;
+    color: color-link;
+    margin: 5px;
+    .toc {
+      list-style: none;
+    }
+  }
+
   pre {
     position: relative;
     margin: 0;
