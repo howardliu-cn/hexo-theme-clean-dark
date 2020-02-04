@@ -2,12 +2,12 @@
 该主题借鉴了Pavel Makhov的 [jekyll-clean-dark](https://github.com/streetturtle/jekyll-clean-dark)，将其内容做了hexo适配，并增加了属于自己的东西。
 
 # 效果
-如果想查看效果，可以在[我的博客](http://www.howardliu.cn/)中查看效果。
+如果想查看效果，可以在[我的博客](https://www.howardliu.cn/)中查看效果。
 如果想查看手机效果，可以扫下面的二维码。
 
-![http://www.howardliu.cn/](http://www.howardliu.cn/images/qr-code/howardliu-qrcode.png)
+![https://www.howardliu.cn/](https://www.howardliu.cn/images/qr-code/howardliu-qrcode.png)
 
-![http://www.howardliu.cn/](http://www.howardliu.cn/images/clean-dark.png)
+![https://www.howardliu.cn/](https://www.howardliu.cn/images/clean-dark.png)
 
 # 使用
 ## 1. 安装
