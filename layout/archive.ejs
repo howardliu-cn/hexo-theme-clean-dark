@@ -3,93 +3,33 @@
         <h1><%= __('archive') %></h1>
 
         <div class="post">
-            <%
-            if(page.archive) {
-            if(page.year) {
-            if (page.month) {
-            %>
-            <div class="post-meta">
-                <div class="post-time">
-                    <time><%- page.year %>-<%- page.month %></time>
+            <% function buildArchive(posts, year) { %>
+                <div class="post-meta">
+                    <div class="post-time">
+                        <time><%- year %></time>
+                    </div>
                 </div>
-            </div>
-            <ul class="posts">
-                <%
-                page.posts.each(function (post, index) {
-                %>
-                <li><%- post.date.format("MM-DD") %> <a
-                            href="<%- url_for(post.path) %>"><%- post.title || __('notitle') %></a></li>
-                <%
-                });
-                %>
-            </ul>
-            <%
-            } else {
-                var thisYearResult = _.groupBy(site.posts.toArray(), function (p) {
-                    return -p.date.format('YYYY');
-                });
-                    for (var year in thisYearResult) {
-            if (-year == page.year) {
-                var sortArray = _.sortBy(thisYearResult[year], function (p) {
-                    return -p.date.format("YYYYMMDD");
-                });
-                var preMonth = "";
-            for(var index = 0; index < sortArray.length; index++) {
-                var post = sortArray[index];
-                var thisMonth = post.date.format("MM");
-            if (thisMonth != preMonth) {
-                preMonth = thisMonth;
-            if(index != 0) {
-            %>
-            </ul>
-            <%
-            }
-            %>
-            <div class="post-meta">
-                <div class="post-time">
-                    <time><%- page.year %>-<%- thisMonth %></time>
-                </div>
-            </div>
-            <ul class="posts">
-                <%
-                }
-                %>
-                <li><%- post.date.format("MM-DD") %> <a
-                            href="<%- url_for(post.path) %>"><%- post.title || __('notitle') %></a></li>
-                <%
-                }
-                %>
-            </ul>
-            <%
-            }
-            }
-            }
-            } else {
-                var result = _.sortBy(site.posts.toArray(), function (p) {
-                    return -p.date.format('YYYYMMDD');
-                });
-                var preYear = "";
-                    for (var index in result) {
-                var post = result[index];
-                var thisYear = post.date.format("YYYY");
-            if (preYear != thisYear) {
-                preYear = thisYear;
-            if(index != 0) {
-            %>
-            </ul>
+                <ul>
+                    <% posts.sort('date',-1).each(post => { %>
+                        <li><%= date(post.date, 'MM-DD') %><a href="<%- url_for(post.path) %>" ><%- post.title || __('notitle') %></a></li>
+                    <% }) %>
+                </ul>
             <% } %>
-            <div class="post-meta">
-                <div class="post-time">
-                    <time><%- thisYear %></time>
-                </div>
-            </div>
-            <ul class="posts">
-                <% }%>
-                <li><%- post.date.format("MM-DD") %> <a
-                            href="<%- url_for(post.path) %>"><%- post.title || __('notitle') %></a></li>
-                <%} %>
-            </ul>
-            <% }} %>
+                <%
+                if (page.year) {
+                    let year = page.year;
+                    let posts = site.posts.filter(p => p.date.year() == year);
+                    buildArchive(posts, year)
+                } else {
+                    let years = {};
+                    let allpost = page.tag ? site.tags.findOne({name: page.tag}).posts : site.posts;
+                    allpost.each(post => years[post.date.year()] = null);
+                    for (let year of Object.keys(years).sort((a, b) => b - a)) {
+                        let posts = allpost.filter(p => p.date.year() == year);
+                        buildArchive(posts, year)
+                    }
+                }
+                %>
         </div>
     </div>
 </div>
