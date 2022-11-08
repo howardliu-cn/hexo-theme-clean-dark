@@ -11,8 +11,19 @@
 
 # 使用
 ## 1. 安装
+
+### 下载主题代码
+
 ```sh
 $ git clone https://github.com/howardliu-cn/hexo-theme-clean-dark.git themes/hexo-theme-clean-dark
+```
+
+### 按照sass依赖
+
+主题中使用sass定义的样式文件，需要借助sass转换成css
+
+```sh
+npm install --save hexo-renderer-sass
 ```
 
 ## 2. 配置
